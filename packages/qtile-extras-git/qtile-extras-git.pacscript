@@ -6,7 +6,7 @@ description="It is a list of mods developed by elParaguayo for Qtile"
 pacdeps=("qtile-git")
 maintainer="Ruturajn <nanotiruturaj@gmail.com>"
 pkgver() {
-  git ls-remote "${url}" main | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b main . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 

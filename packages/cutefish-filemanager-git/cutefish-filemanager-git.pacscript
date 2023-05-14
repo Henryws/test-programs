@@ -8,7 +8,7 @@ depends=("fishui" "libcutefish" "kio" "libkf5solid-dev")
 description="Cutefish File Manager, simple to use, beautiful, and retain the classic PC interactive design."
 
 pkgver() {
-  git ls-remote "${url}" main | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b main . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 

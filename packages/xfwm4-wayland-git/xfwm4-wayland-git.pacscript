@@ -8,7 +8,7 @@ description="xfwm4-wayland compositor"
 maintainer="Oren Klopfer <oren@taumoda.com>"
 incompatible=("ubuntu:bionic" "ubuntu:focal" "ubuntu:jammy" "debian:stretch" "debian:buster" "debian:bullseye")
 pkgver() {
-  git ls-remote "${url}" wayland-2 | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b wayland-2 . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 

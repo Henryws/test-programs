@@ -7,7 +7,7 @@ maintainer="Henryws <hwengerstickel@pm.me>"
 build_depends=("ninja-build" "gettext" "libtool-bin" "autoconf" "automake" "cmake" "g++" "pkg-config" "unzip")
 breaks=("neovim-bin" "neovim" "neovim-app" "neovim-deb")
 pkgver() {
-  git ls-remote "${url}" master | head -n1 | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b master . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 

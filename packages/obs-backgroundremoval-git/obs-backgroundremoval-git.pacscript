@@ -10,7 +10,7 @@ arch=('amd64')
 description="OBS plugin to replace the background in portrait images and video"
 maintainer="Zahrun <Zahrun@github.com>"
 pkgver() {
-  git ls-remote "${url}" refs/heads/main | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b main . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 incompatible=('ubuntu:jammy' 'ubuntu:focal' 'ubuntu:bionic' 'debian:buster' 'debian:bullseye')

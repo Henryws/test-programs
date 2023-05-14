@@ -8,7 +8,7 @@ maintainer="Ruturajn <nanotiruturaj@gmail.com>"
 breaks="compton picom"
 
 pkgver() {
-  git ls-remote "${url}" next-rebase | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b next-rebase . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 

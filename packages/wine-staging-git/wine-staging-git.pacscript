@@ -34,7 +34,7 @@ optdepends=("libcapi20-dev: for ISDN software"
 maintainer="echometerain <echometer@disroot.org>"
 
 pkgver() {
-  git ls-remote "${url}" master | cut -f1 | cut -c1-8
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b master . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd ..
 }
 version="$(pkgver)"
 

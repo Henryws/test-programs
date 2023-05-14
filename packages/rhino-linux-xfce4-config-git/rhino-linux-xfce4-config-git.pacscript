@@ -8,7 +8,7 @@ optdepends=("xfce4: to use the configuration")
 
 url="https://github.com/rhino-linux/dotfiles.git"
 pkgver() {
-  git ls-remote "${url}" main | cut -f1 | cut -c1-8 # Returns the latest commit hash from remote
+  sudo mkdir tempcount && sudo chown "${PACSTALL_USER}" tempcount && cd tempcount && git clone -q --filter=tree:0 --depth=1 --no-checkout "${url}" -b main . && git log --format=%ct.%h && sudo rm -r ../tempcount && cd .. # Returns the latest commit hash from remote
 }
 version="$(pkgver)"
 
